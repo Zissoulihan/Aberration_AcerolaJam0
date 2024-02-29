@@ -48,8 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speedData:
     InitialSpeed: 2
-    MaxSpeed: 8
-    DurationAccelerate: 1
+    MaxSpeed: 12
+    DurationAccelerate: 1.8
     AccelerationCurve:
       serializedVersion: 2
       m_Curve:
@@ -62,6 +62,33 @@ MonoBehaviour:
         weightedMode: 0
         inWeight: 0
         outWeight: 0
+      - serializedVersion: 3
+        time: 0.19944245
+        value: 0.139768
+        inSlope: 1.601115
+        outSlope: 1.601115
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.40374738
+        value: 0.81475556
+        inSlope: 1.5124767
+        outSlope: 1.5124767
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.68935275
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
         value: 1
@@ -104,7 +131,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   _durationCoyoteTime: 0.08
   _airSpeedMult: 0.5
-  _mouseSensitivity: {x: 12, y: 12}
+  _mouseSensitivity: {x: 16, y: 16}
   _camPivot: {fileID: 2122705069375381290}
   _clampXRotation: 90
   _evInputMovement: {fileID: 11400000, guid: 4e144f1221f55144b93759283a789453, type: 2}
