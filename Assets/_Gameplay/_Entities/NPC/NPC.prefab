@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9004457064058828622}
   - component: {fileID: 936677260941243574}
-  - component: {fileID: 9119493012698699334}
-  - component: {fileID: 9066810855618829129}
   m_Layer: 8
   m_Name: NPC
   m_TagString: Untagged
@@ -47,40 +45,95 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d21440f6a54d6540b53a3a705b7f560, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &9119493012698699334
+  _sense: {fileID: 5353881272599856065}
+  _rateCheckPlayer: 0.3
+  _durationShock: 0
+--- !u!1 &3959205195287889251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1863061978638523161}
+  - component: {fileID: 5353881272599856065}
+  m_Layer: 8
+  m_Name: Sensory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1863061978638523161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3959205195287889251}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4682223798288797257}
+  m_Father: {fileID: 7536179693850195995}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &5353881272599856065
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1796949460392596058}
+  m_GameObject: {fileID: 3959205195287889251}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 158d9f06e111dda41be84f2ee2e8b936, type: 3}
+  m_Script: {fileID: 11500000, guid: 88a1e4c631d355b4b901f462ac04694c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!195 &9066810855618829129
-NavMeshAgent:
+  _visionRoot: {fileID: 4682223798288797257}
+  _lookDistance: 7.5
+  _lookAngle: 70
+  _layerPlayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _layersVisionObscuring:
+    serializedVersion: 2
+    m_Bits: 128
+  _lookBufferSize: 6
+--- !u!1 &5840133215477438508
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1796949460392596058}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 0.75
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4682223798288797257}
+  m_Layer: 8
+  m_Name: Vision
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4682223798288797257
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5840133215477438508}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.25, z: -0.02}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1863061978638523161}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7130091110845818640
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,9 +143,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7536179693850195995}
+  - component: {fileID: 5347039648613680447}
   - component: {fileID: 3790885740711429595}
   - component: {fileID: 4682810531090740346}
   - component: {fileID: 3367158321845789382}
+  - component: {fileID: 8845019648586790115}
   m_Layer: 8
   m_Name: NPC Body
   m_TagString: Untagged
@@ -112,9 +167,22 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1863061978638523161}
   m_Father: {fileID: 9004457064058828622}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5347039648613680447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7130091110845818640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 158d9f06e111dda41be84f2ee2e8b936, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &3790885740711429595
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -186,3 +254,25 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 0.025}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &8845019648586790115
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7130091110845818640}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
