@@ -2,55 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCBehavior : MonoBehaviour
+public class NPCBehavior_Fear : NPCBehavior
 {
-    [SerializeField] NPCSensory _sense;
-    [Header("Idle")]
-    [SerializeField] float _rateCheckPlayer;
-    [Header("Fear")]
     [SerializeField] float _durationShock;
 
-    NPCMovement _move;
-
-    bool _playerDetected;
     bool _hidingSpotFound;
 
-    float _timeLastPlayerCheck;
-    float _timeLastPlayerSeen;
-    
-    private void Awake()
+    public override void Tick(float tickDelta)
     {
-        Init();
-    }
+        base.Tick(tickDelta);
 
-    void Init()
-    {
-        _move = GetComponentInChildren<NPCMovement>();
-    }
-
-    private void Update()
-    {
-        CheckForPlayer();
         FindHidingSpot();
-    }
-
-    void CheckForPlayer()
-    {
-        if (_playerDetected) return;
-        if (Time.time < _timeLastPlayerCheck + _rateCheckPlayer) return;
-        _timeLastPlayerCheck = Time.time;
-        if (!_sense.LookForPlayer()) return;
-
-        print($"Oh sweet jesus fuck, run!");
-        _playerDetected = true;
-        _timeLastPlayerSeen = Time.time;
     }
 
     void FindHidingSpot()
     {
-        if (!_playerDetected) return;
         if (_hidingSpotFound) return;
-        if (Time.time < _timeLastPlayerSeen + _durationShock) return;
+        if (_behaviorTimeSpent < _durationShock) return;
 
         if (NPCHidingSpot.HidingSpots == null || NPCHidingSpot.HidingSpots.Count == 0) {
             //TODO: Panik
@@ -76,5 +44,4 @@ public class NPCBehavior : MonoBehaviour
         _move.MoveToGoal(goalSpot.HidingPosition);
         _hidingSpotFound = true;
     }
-
 }
