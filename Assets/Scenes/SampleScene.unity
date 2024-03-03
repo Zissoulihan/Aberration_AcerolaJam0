@@ -1168,6 +1168,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: PLAYER
       objectReference: {fileID: 0}
+    - target: {fileID: 4532141878734134212, guid: 0c06a5e1016f45542984aaf90a393a37,
+        type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532141878734134212, guid: 0c06a5e1016f45542984aaf90a393a37,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532141878734134212, guid: 0c06a5e1016f45542984aaf90a393a37,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532141878734134212, guid: 0c06a5e1016f45542984aaf90a393a37,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5713569163356426296, guid: 0c06a5e1016f45542984aaf90a393a37,
         type: 3}
       propertyPath: m_LocalPosition.x
