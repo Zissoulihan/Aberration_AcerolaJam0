@@ -24,7 +24,6 @@ public class NPCBehavior_Idle : NPCBehavior
 
         _playerDetected = true;
 
-        //TODO: Just flee/panic sometimes
         _actor.ChangeBehavior(NPCState.Fear);
     }
 }

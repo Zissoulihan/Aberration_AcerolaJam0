@@ -8,6 +8,7 @@ public class NPCActor : SerializedMonoBehaviour
 {
     [SerializeField] NPCMovement _move;
     [SerializeField] NPCSensory _sense;
+    [SerializeField] NPCAnimator _anim;
     [OdinSerialize] Dictionary<NPCState, NPCBehavior> _behaviors;
     [SerializeField] float _tickRate;
     [SerializeField] SharedVariableBool _svGamePaused;
@@ -42,6 +43,7 @@ public class NPCActor : SerializedMonoBehaviour
         if (_activeBehavior is not null) _activeBehavior.ExitBehavior();
         _activeBehavior = _behaviors[newState];
         _activeBehavior.EnterBehavior();
+        _anim.AnimState(newState);
     }
 
     private void Update()
@@ -75,6 +77,9 @@ public enum NPCState
     Flee,
     Hide,
     Seek,
+    Interact,
+    Escape,
+    Pain,
     Dead,
     ENUM_HEIGHT
 }

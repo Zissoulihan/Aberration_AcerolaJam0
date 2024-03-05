@@ -4,44 +4,28 @@ using UnityEngine;
 
 public class NPCBehavior_Fear : NPCBehavior
 {
-    [SerializeField] float _durationShock;
+    [SerializeField] Vector2 _rangeDurationCowerInFear;
 
-    bool _hidingSpotFound;
+    float _durationFear;
 
+    public override void EnterBehavior()
+    {
+        base.EnterBehavior();
+        _durationFear = Random.Range(_rangeDurationCowerInFear.x, _rangeDurationCowerInFear.y);
+    }
     public override void Tick(float tickDelta)
     {
         base.Tick(tickDelta);
 
-        FindHidingSpot();
+        CowerInFear();
     }
 
-    void FindHidingSpot()
+    void CowerInFear()
     {
-        if (_hidingSpotFound) return;
-        if (_behaviorTimeSpent < _durationShock) return;
+        if (_behaviorTimeSpent < _durationFear) return;
 
-        if (NPCHidingSpot.HidingSpots == null || NPCHidingSpot.HidingSpots.Count == 0) {
-            //TODO: Panik
-            return;
-        }
-
-        float minDist = 999f;
-        NPCHidingSpot goalSpot = null;
-        foreach (var spot in NPCHidingSpot.HidingSpots) {
-            if (spot == null || spot.Claimed) continue;
-            float distToSpot = Vector3.Distance(_move.transform.position, spot.HidingPosition);
-            if (distToSpot < minDist) {
-                goalSpot = spot;
-                minDist = distToSpot;
-            }
-        }
-        if (goalSpot == null) {
-            print("Hiding spots searched but none could be found!");
-            return;
-        }
-
-        goalSpot.CallDibs();
-        _move.MoveToGoal(goalSpot.HidingPosition);
-        _hidingSpotFound = true;
+        //Transition
+        _actor.ChangeBehavior(NPCState.Flee);
     }
+    
 }
