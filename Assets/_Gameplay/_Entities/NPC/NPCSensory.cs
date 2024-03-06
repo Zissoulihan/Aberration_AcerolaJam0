@@ -11,15 +11,25 @@ public class NPCSensory : MonoBehaviour
     [SerializeField] LayerMask _layerPlayer;
     [SerializeField] LayerMask _layersVisionObscuring;
     [SerializeField] int _lookBufferSize;
+    [SerializeField] float _durationCacheLookResult;
 
     public float LookDistance => _lookDistance;
     public float LookAngle => _lookAngle;
 
+    float _timeLastLook;
+
+    bool _cachedLookResult;
+
     public bool LookForPlayer()
     {
+        if (Time.time < _timeLastLook + _durationCacheLookResult) {
+            return _cachedLookResult;
+        }
+
+        _timeLastLook = Time.time;
         Collider[] playerColliders = new Collider[_lookBufferSize];
         int countResults = Physics.OverlapSphereNonAlloc(_visionRoot.position, _lookDistance, playerColliders, _layerPlayer);
-        if (countResults <= 0) return false;
+        if (countResults <= 0) return _cachedLookResult = false;
 
         for (int i = 0; i < countResults; i++) {
             Transform playerTf = playerColliders[i].transform;
@@ -34,10 +44,10 @@ public class NPCSensory : MonoBehaviour
             if (Physics.RaycastNonAlloc(_visionRoot.position, dirToPlayer, hits, distToPlayer, _layersVisionObscuring) > 0) continue;
 
             //Confirmed, we have a visual
-            return true;
+            return _cachedLookResult = true;
         }
 
-        return false;
+        return _cachedLookResult = false;
     }
 
     //Credit: Sebastian Lague

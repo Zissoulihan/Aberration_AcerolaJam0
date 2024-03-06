@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] PlayerAccelerationData _speedData;
+    [SerializeField] SharedVariableVector3 _svPlayerPosition;
     [Header("Gravity & Jumping")]
     [SerializeField] PlayerAccelerationData _gravityData;
     [SerializeField] float _durationCoyoteTime;
@@ -131,6 +132,7 @@ public class PlayerMovement : MonoBehaviour
         if (_svGamePaused.Value) return;
         ApplyMovement();
         ApplyGravity();
+        BroadcastPlayerPos();
     }
 
     void ApplyMovement()
@@ -151,12 +153,17 @@ public class PlayerMovement : MonoBehaviour
         //Apply Gravity & (TODO) Jump Force
         _rb.AddForce(Vector3.down * (_gravity - _currentJumpForce) * Time.fixedDeltaTime, ForceMode.VelocityChange);
     }
+    void BroadcastPlayerPos()
+    {
+        _svPlayerPosition.Set(_rb.position);
+    }
 
     float GetEffectiveMoveSpeed()
     {
         float spd = _speedData.GetSpeed(_timeLastIdle, Time.time);
         return _consideredGrounded ? spd : spd * _airSpeedMult;
     }
+
 }
 
 [System.Serializable]

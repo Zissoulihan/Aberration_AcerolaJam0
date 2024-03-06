@@ -101,6 +101,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+  _svPlayerPosition: {fileID: 11400000, guid: 217e56f0d0577be428528c89556c396a, type: 2}
   _gravityData:
     InitialSpeed: 0
     MaxSpeed: 40

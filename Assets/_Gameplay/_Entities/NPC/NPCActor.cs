@@ -46,6 +46,11 @@ public class NPCActor : SerializedMonoBehaviour
         _anim.AnimState(newState);
     }
 
+    public void HaveHeartAttack()
+    {
+        print("BLEFHFHSSHHHGGH!");
+    }
+
     private void Update()
     {
         UpdateTickTimer();

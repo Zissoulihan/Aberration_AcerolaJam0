@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9004457064058828622}
   - component: {fileID: 936677260941243574}
+  - component: {fileID: 7238628696699848825}
   m_Layer: 8
   m_Name: NPC
   m_TagString: Untagged
@@ -208,6 +209,42 @@ MonoBehaviour:
   _anim: {fileID: 6053582744902493948}
   _tickRate: 0.1
   _svGamePaused: {fileID: 11400000, guid: 9f0d6c07d65862a4a92045483fe2490e, type: 2}
+--- !u!114 &7238628696699848825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796949460392596058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f1b53defa0965d45a4e38dce8850ac9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sense: {fileID: 5353881272599856065}
+  _maxFear: 100
+  _fearAmtOnPlayerSeen: 8
+  _fearAmtOnPlayerNear: 2
+  _rateCheckPlayerSeen: 0.15
+  _rateCheckPlayerDistance: 0.22
+  _distanceFearPlayer: 2.2
+  _svGamePaused: {fileID: 11400000, guid: 9f0d6c07d65862a4a92045483fe2490e, type: 2}
+  _svPlayerPos: {fileID: 11400000, guid: 217e56f0d0577be428528c89556c396a, type: 2}
+  OnMaxFearReached:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 936677260941243574}
+        m_TargetAssemblyTypeName: NPCActor, Assembly-CSharp
+        m_MethodName: HaveHeartAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3056705679897981300
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,6 +452,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _lookBufferSize: 6
+  _durationCacheLookResult: 0.08
 --- !u!1 &5770811863888544364
 GameObject:
   m_ObjectHideFlags: 0
