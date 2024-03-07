@@ -5,6 +5,7 @@ using UnityEngine;
 public class NPCSensory : MonoBehaviour
 {
     [SerializeField] Transform _visionRoot;
+    [SerializeField] Transform _bodyRoot;
     [SerializeField] float _lookDistance;
     [Range(0f, 360f)]
     [SerializeField] float _lookAngle;
@@ -12,6 +13,7 @@ public class NPCSensory : MonoBehaviour
     [SerializeField] LayerMask _layersVisionObscuring;
     [SerializeField] int _lookBufferSize;
     [SerializeField] float _durationCacheLookResult;
+    [SerializeField] SharedVariableVector3 _svPlayerPos;
 
     public float LookDistance => _lookDistance;
     public float LookAngle => _lookAngle;
@@ -48,6 +50,17 @@ public class NPCSensory : MonoBehaviour
         }
 
         return _cachedLookResult = false;
+    }
+
+    public float GetDistanceFromPlayer()
+    {
+        //TODO: the smarter distance math
+        return Mathf.Abs(Vector3.Distance(_bodyRoot.position, _svPlayerPos.Value));
+    }
+
+    public Vector3 GetDirectionToPlayer()
+    {
+        return (_bodyRoot.position - _svPlayerPos.Value).normalized;
     }
 
     //Credit: Sebastian Lague

@@ -17,6 +17,8 @@ public abstract class NPCBehavior : MonoBehaviour
 
     protected float _behaviorTimeSpent;
 
+    protected bool _exitingBehavior;
+
     public virtual void Initialize(NPCActor actor, NPCMovement movement, NPCSensory sensory, NPCState state)
     {
         _actor = actor;
@@ -27,16 +29,19 @@ public abstract class NPCBehavior : MonoBehaviour
     public virtual void EnterBehavior()
     {
         _behaviorTimeSpent = 0f;
+        _exitingBehavior = false;
         OnEnterBehavior?.Invoke(_state);
     }
 
     public virtual void Tick(float tickDelta)
     {
+        if (_exitingBehavior) return;
         _behaviorTimeSpent += tickDelta;
     }
 
     public virtual void ExitBehavior()
     {
         OnExitBehavior?.Invoke(_state);
+        _exitingBehavior = true;
     }
 }

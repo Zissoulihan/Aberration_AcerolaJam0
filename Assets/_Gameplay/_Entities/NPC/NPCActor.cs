@@ -17,6 +17,8 @@ public class NPCActor : SerializedMonoBehaviour
 
     NPCBehavior _activeBehavior;
 
+    NPCHidingSpot _currentHidingSpot;
+
     float _tickTimer;
 
     private void Awake()
@@ -71,6 +73,18 @@ public class NPCActor : SerializedMonoBehaviour
         if (_activeBehavior is null) return;
         if (_svGamePaused.Value) return;
         _tickTimer += Time.deltaTime;
+    }
+
+    public void HideInSpot(NPCHidingSpot spot)
+    {
+        _currentHidingSpot = spot;
+    }
+
+    public void LeaveHidingSpot()
+    {
+        if (_currentHidingSpot == null) return;
+        _currentHidingSpot.Relinquish();
+        _currentHidingSpot = null;
     }
 
 }

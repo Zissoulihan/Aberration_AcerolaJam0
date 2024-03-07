@@ -28,4 +28,10 @@ public class NPCHidingSpot : MonoBehaviour
         Claimed = true;
         HidingSpots?.Remove(this);
     }
+    public void Relinquish()
+    {
+        if (!Claimed) return;
+        Claimed = false;
+        Init();
+    }
 }

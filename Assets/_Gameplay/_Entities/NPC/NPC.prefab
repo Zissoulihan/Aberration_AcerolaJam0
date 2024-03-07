@@ -137,6 +137,7 @@ MonoBehaviour:
     - {fileID: 7503053325343590590}
     - {fileID: 231079918906863158}
     - {fileID: 8360323945820440883}
+    - {fileID: 7364669189587978714}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -161,40 +162,52 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
       Data: 3
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 0
     - Name: $v
       Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 1
-    - Name: $v
-      Entry: 10
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 2
-    - Name: $v
-      Entry: 10
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -229,7 +242,6 @@ MonoBehaviour:
   _rateCheckPlayerDistance: 0.22
   _distanceFearPlayer: 2.2
   _svGamePaused: {fileID: 11400000, guid: 9f0d6c07d65862a4a92045483fe2490e, type: 2}
-  _svPlayerPos: {fileID: 11400000, guid: 217e56f0d0577be428528c89556c396a, type: 2}
   OnMaxFearReached:
     m_PersistentCalls:
       m_Calls:
@@ -295,6 +307,8 @@ MonoBehaviour:
   OnExitBehavior:
     m_PersistentCalls:
       m_Calls: []
+  _maxHideSpotDistance: 20
+  _distanceConsiderSafe: 15
 --- !u!1 &3123603155617511581
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,6 +457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _visionRoot: {fileID: 4682223798288797257}
+  _bodyRoot: {fileID: 7536179693850195995}
   _lookDistance: 7.5
   _lookAngle: 70
   _layerPlayer:
@@ -453,6 +468,59 @@ MonoBehaviour:
     m_Bits: 128
   _lookBufferSize: 6
   _durationCacheLookResult: 0.08
+  _svPlayerPos: {fileID: 11400000, guid: 217e56f0d0577be428528c89556c396a, type: 2}
+--- !u!1 &5297918483586416373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6347353289794563466}
+  - component: {fileID: 7364669189587978714}
+  m_Layer: 8
+  m_Name: Hide
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6347353289794563466
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5297918483586416373}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4077809031353908609}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7364669189587978714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5297918483586416373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b65137799da27c458e511b9644b6a09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnEnterBehavior:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExitBehavior:
+    m_PersistentCalls:
+      m_Calls: []
+  _rangeDurationHide: {x: 0.7, y: 1.5}
+  _minSafePlayerDistance: 7
 --- !u!1 &5770811863888544364
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,6 +553,7 @@ Transform:
   - {fileID: 6303057094167567431}
   - {fileID: 8718124405617645921}
   - {fileID: 2474864319338082139}
+  - {fileID: 6347353289794563466}
   m_Father: {fileID: 9004457064058828622}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5840133215477438508

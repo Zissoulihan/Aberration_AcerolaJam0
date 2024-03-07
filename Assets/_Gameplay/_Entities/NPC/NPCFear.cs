@@ -13,7 +13,6 @@ public class NPCFear : MonoBehaviour
     [SerializeField] float _rateCheckPlayerDistance;
     [SerializeField] float _distanceFearPlayer;
     [SerializeField] SharedVariableBool _svGamePaused;
-    [SerializeField] SharedVariableVector3 _svPlayerPos;
 
     public UnityEvent OnMaxFearReached;
     public float FearValue => Mathf.Clamp(_currentFear, 0f, _maxFear);
@@ -50,7 +49,7 @@ public class NPCFear : MonoBehaviour
     {
         if (_timerDistanceCheck < _rateCheckPlayerDistance) return;
         _timerDistanceCheck = 0f;
-        if (Mathf.Abs(Vector3.Distance(_sense.transform.position, _svPlayerPos.Value)) > _distanceFearPlayer) return;
+        if (_sense.GetDistanceFromPlayer() > _distanceFearPlayer) return;
         AddFear(_fearAmtOnPlayerNear);
     }
 
