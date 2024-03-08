@@ -6,6 +6,9 @@ public class NPCBehavior_Flee : NPCBehavior
 {
     [SerializeField] float _maxHideSpotDistance;
     [SerializeField] float _distanceConsiderSafe;
+    [SerializeField] float _cooldownFleeToSpot;
+
+    float _timeLastFled;
 
     bool _hidingSpotFound;
     bool _fleeingToSpot;
@@ -66,7 +69,14 @@ public class NPCBehavior_Flee : NPCBehavior
     {
         if (_exitingBehavior) return;
         if (_hidingSpotFound) return;
+        if (_fleeingToSpot) {
+            if (_behaviorTimeSpent < _timeLastFled + _cooldownFleeToSpot) return;
+        }
+
         //Run away from player
+        _fleeingToSpot = _move.TryFlee(_sense.GetDirectionFromPlayer());
+        _timeLastFled = _behaviorTimeSpent;
+        print($"EEP! Flee spot found? {_fleeingToSpot}");
     }
 
     void Hide()

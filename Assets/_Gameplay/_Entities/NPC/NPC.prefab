@@ -309,6 +309,7 @@ MonoBehaviour:
       m_Calls: []
   _maxHideSpotDistance: 20
   _distanceConsiderSafe: 15
+  _cooldownFleeToSpot: 0.5
 --- !u!1 &3123603155617511581
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,6 +465,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _layersVisionObscuring:
+    serializedVersion: 2
+    m_Bits: 128
+  _layerGround:
     serializedVersion: 2
     m_Bits: 128
   _lookBufferSize: 6
@@ -638,7 +642,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158d9f06e111dda41be84f2ee2e8b936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sense: {fileID: 5353881272599856065}
   _distanceConsiderGoalReached: 0.25
+  _distanceTryFlee: 2
+  _maxNumFleeAttempts: 10
+  _fleeDirAngleVariance: 30
   _svGamePaused: {fileID: 11400000, guid: 9f0d6c07d65862a4a92045483fe2490e, type: 2}
 --- !u!114 &6053582744902493948
 MonoBehaviour:

@@ -11,6 +11,7 @@ public class NPCSensory : MonoBehaviour
     [SerializeField] float _lookAngle;
     [SerializeField] LayerMask _layerPlayer;
     [SerializeField] LayerMask _layersVisionObscuring;
+    [SerializeField] LayerMask _layerGround;
     [SerializeField] int _lookBufferSize;
     [SerializeField] float _durationCacheLookResult;
     [SerializeField] SharedVariableVector3 _svPlayerPos;
@@ -51,14 +52,20 @@ public class NPCSensory : MonoBehaviour
 
         return _cachedLookResult = false;
     }
-
+    public bool IsWallBlocking(Vector3 direction, float dist)
+    {
+        RaycastHit[] results = new RaycastHit[2];
+        return Physics.RaycastNonAlloc(_bodyRoot.position, direction, results, dist, _layerGround) > 0;
+    }
     public float GetDistanceFromPlayer()
     {
-        //TODO: the smarter distance math
-        return Mathf.Abs(Vector3.Distance(_bodyRoot.position, _svPlayerPos.Value));
+        return Mathf.Abs(Vector3.Distance(_bodyRoot.position, _svPlayerPos.Value));     //Probably don't need abs but am dum
     }
-
     public Vector3 GetDirectionToPlayer()
+    {
+        return (_svPlayerPos.Value - _bodyRoot.position).normalized;
+    }
+    public Vector3 GetDirectionFromPlayer()
     {
         return (_bodyRoot.position - _svPlayerPos.Value).normalized;
     }
