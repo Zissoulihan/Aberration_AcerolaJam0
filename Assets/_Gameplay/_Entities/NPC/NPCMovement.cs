@@ -49,9 +49,10 @@ public class NPCMovement : MonoBehaviour
         }
 
         float angleIncrement = (_fleeDirAngleVariance * 2) / _maxNumFleeAttempts;
-        Vector3 fleeDir = Quaternion.AngleAxis(-_fleeDirAngleVariance, Vector3.up) * directionToFlee;
+        int initialDirection = ChanceH.Choose<int>(new(){-1,1});
+        Vector3 fleeDir = Quaternion.AngleAxis(initialDirection * _fleeDirAngleVariance, Vector3.up) * directionToFlee;
         for (int i = 0; i < _maxNumFleeAttempts; i++) {
-            fleeDir = Quaternion.AngleAxis(i * angleIncrement, Vector3.up) * fleeDir;
+            fleeDir = Quaternion.AngleAxis(i * (-initialDirection * angleIncrement), Vector3.up) * fleeDir;
             if (_sense.IsWallBlocking(fleeDir, _distanceTryFlee)) continue;
             //Pos is not blocked by wall
             MoveToGoal(_body.position + (fleeDir * _distanceTryFlee));
